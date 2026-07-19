@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>งานหนึ่งชิ้นใน AI team มันวิ่งผ่านอะไรบ้าง | SekApp Stories</title>
+  <meta name="description" content="บทที่ 3 ของ SekApp Stories: ลองแกะ flow จริงว่าจากข้อความใน Discord งานหนึ่งชิ้นวิ่งผ่าน .md, skill, context, subagent, handoff และ script อะไรบ้าง" />
+  <meta property="og:title" content="งานหนึ่งชิ้นใน AI team มันวิ่งผ่านอะไรบ้าง" />
+  <meta property="og:description" content="งานหนึ่งชิ้นไม่ได้อยู่แค่ในแชท มันวิ่งผ่าน .md, skill, memory, thread, subagent, handoff และ script หลายตัว" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://medium.patkingdom.xyz/3/" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fff;--ink:#242424;--soft:#3f3f3f;--muted:#6b6b6b;--line:#e6e6e6;--light:#fafafa;--accent:#f97316;--max:720px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Thai",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}a{color:inherit}.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1120px;height:58px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em}.brand-mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-size:15px}.navlinks{display:flex;gap:18px;font-size:14px;color:var(--muted)}.navlinks a{text-decoration:none}.article-head{max-width:var(--max);margin:0 auto;padding:68px 22px 28px}.eyebrow{color:#7c2d12;font-size:14px;font-weight:700;margin-bottom:18px}h1{margin:0;font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(37px,6.8vw,62px);line-height:1.13;letter-spacing:-.045em;font-weight:700;color:#161616}.subtitle{margin:22px 0 0;font-size:clamp(18px,2.2vw,22px);line-height:1.7;color:var(--soft);font-weight:400}.byline{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;color:var(--muted);font-size:14px}.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff3e8;color:#c2410c;font-weight:800;flex:0 0 auto}.byline strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}.cover{max-width:960px;margin:18px auto 52px;padding:0 22px}.cover figure{margin:0}.diagram{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0 30px;background:#fff}.pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.stage{min-width:0}.stage small{display:block;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}.stage b{display:block;font-size:16px;line-height:1.4}.stage span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}.line{height:1px;background:var(--line);margin:24px 0}.caption{margin:12px 0 0;text-align:center;color:var(--muted);font-size:14px;line-height:1.6}.layout{max-width:1120px;margin:0 auto;padding:0 22px 88px;display:grid;grid-template-columns:170px minmax(0,var(--max)) 170px;gap:34px;align-items:start}.rail{position:sticky;top:90px;color:var(--muted);font-size:13px}.rail a{display:block;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0}.rail b{display:block;color:var(--ink);margin-bottom:8px;font-size:13px}.sharebox{position:sticky;top:90px;color:var(--muted);font-size:13px;text-align:right}.sharebox span{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:#fff}article{min-width:0}article h2{margin:56px 0 14px;font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(28px,3vw,38px);line-height:1.28;letter-spacing:-.035em;color:#151515}article h2:first-child{margin-top:0}article p{margin:18px 0;font-family:"Noto Serif Thai",Georgia,serif;font-size:20px;line-height:1.9;color:#292929}article ul{margin:18px 0;padding-left:25px;font-family:"Noto Serif Thai",Georgia,serif;font-size:20px;line-height:1.85;color:#292929}article li{margin:8px 0}.quote{margin:34px 0;padding:0 0 0 24px;border-left:4px solid #111;font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(24px,3vw,31px);line-height:1.65;color:#111;letter-spacing:-.025em}.tool-list{margin:30px 0 34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.tool-row{display:grid;grid-template-columns:170px 1fr;gap:22px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}.tool-row:first-child{border-top:0}.tool-row small{color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.tool-row strong{color:#171717;font-size:18px;line-height:1.55;font-weight:700}.code{margin:28px 0;padding:18px 20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.75;color:#333;background:#fafafa;overflow:auto}.cta{margin-top:46px;padding-top:26px;border-top:1px solid var(--line)}.cta p{font-family:"Noto Serif Thai",Georgia,serif;font-size:20px;line-height:1.9;color:#292929}.footer{max-width:var(--max);margin:0 auto;padding:28px 22px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}@media(max-width:980px){.layout{grid-template-columns:1fr;max-width:var(--max);gap:24px}.rail,.sharebox{position:static;text-align:left}.rail{display:none}.sharebox{border-top:1px solid var(--line);padding-top:18px}}@media(max-width:720px){
+      .series-nav { grid-template-columns: 1fr; gap: 18px; margin-bottom: 34px; padding-left: 16px; padding-right: 16px; }
+      .series-nav .next { text-align: left; }
+      .series-nav .empty { display: none; }
+.topbar-inner{padding:0 16px}.navlinks{display:none}.article-head{padding-top:44px}.cover{margin-bottom:38px;padding:0 16px}.layout,.article-head,.footer{padding-left:16px;padding-right:16px}article p,article ul{font-size:18px;line-height:1.9}.pipeline{grid-template-columns:1fr;gap:20px}.stage{padding-bottom:16px;border-bottom:1px solid var(--line)}.stage:last-child{border-bottom:0}.tool-row{grid-template-columns:1fr;gap:4px;padding:15px 0}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="/" aria-label="SekApp Stories"><span class="brand-mark">S</span><span>SekApp Stories</span></a><nav class="navlinks" aria-label="Article sections"><a href="#md">.md</a><a href="#skill">Skill</a><a href="#context">Context</a><a href="#scripts">Scripts</a></nav></div></header>
+
+  <section class="article-head">
+    <div class="eyebrow">บทที่ 3 · AI runtime anatomy</div>
+    <h1>งานหนึ่งชิ้นใน AI team มันวิ่งผ่านอะไรบ้าง</h1>
+    <p class="subtitle">บทนี้ขอ tech กว่าเดิมหน่อย ผมอยากแกะให้เห็นว่าเวลางานหนึ่งชิ้นวิ่งใน SekApp จริงๆ มันไม่ได้อยู่แค่ในแชท แต่มันผ่าน `.md`, skill, memory, Discord thread, subagent, handoff แล้วค่อยให้ script รับไม้ต่อ</p>
+    <div class="byline"><div class="avatar">🍊</div><div><strong>Blue / SekApp Lab</strong><span>Technical deep dive · อ่านประมาณ 11 นาที</span></div></div>
+  </section>
+
+  <section class="cover"><figure><div class="diagram"><div class="pipeline"><div class="stage"><small>Bootstrap</small><b>.md files</b><span>rule, identity, memory, tool notes</span></div><div class="stage"><small>Runtime</small><b>skill + context</b><span>เลือกอ่านเฉพาะที่เกี่ยวกับ task</span></div><div class="stage"><small>Work split</small><b>thread / subagent</b><span>แยกห้อง แยก context แยกคนทำ</span></div><div class="stage"><small>Evidence</small><b>handoff + script</b><span>ไฟล์จริง log จริง status จริง</span></div></div><div class="line"></div><div class="pipeline"><div class="stage"><small>Source</small><b>Discord</b><span>manager สั่งงาน / thread คุยงาน</span></div><div class="stage"><small>Truth</small><b>Linear + GitLab</b><span>issue, repo, MR, artifact</span></div><div class="stage"><small>Automation</small><b>relay / watcher / audit</b><span>sync, notify, check drift</span></div><div class="stage"><small>Human</small><b>approval</b><span>action เสี่ยงยังให้คนตัดสินใจ</span></div></div></div><figcaption class="caption">ภาพรวมแบบบ้านๆ: context ทำให้ AI รู้ว่าควรทำอะไร ส่วน script ทำให้เรารู้ว่าของจริงขยับไหม</figcaption></figure></section>
+
+  <main class="layout">
+    <aside class="rail"><b>ในบทความนี้</b><a href="#start">ทำไมต้องแกะ flow</a><a href="#md">.md อ่านตอนไหน</a><a href="#skill">skill ถูกเรียกตอนไหน</a><a href="#context">thread/context/subagent</a><a href="#create">project create flow</a><a href="#handoff">handoff รับไม้ยังไง</a><a href="#scripts">scripts หลังบ้าน</a><a href="#next">ที่ยังต้องปรับ</a></aside>
+    <article>
+      <section id="start">
+        <p>บทก่อนผมเล่าว่า AI เพียวๆ ยังไม่พอ เพราะมันบอกว่า “ทำแล้ว” ได้ แต่ state จริงๆ ในระบบอาจจะยังไม่ขยับ รอบนี้เลยอยากแกะให้ลึกกว่าเดิมว่าใน SekApp ผมต่ออะไรไว้บ้าง</p>
+        <p>ถ้าดูจากข้างนอก มันเหมือนมี agent คุยกันใน Discord เฉยๆ แต่ข้างหลังมีหลายชั้นมาก ตั้งแต่ `.md` ที่เป็นเหมือน onboarding doc, skill ที่ถูกเรียกเฉพาะงาน, memory search, Discord thread, subagent, handoff file แล้วค่อยมี script มารับช่วงต่อ</p>
+        <div class="quote">ผมเริ่มมอง agent เป็น process หนึ่งในระบบมากกว่าเป็นแค่ model ที่ตอบคำถาม มันต้องมี rule, context, tool และ evidence ให้เช็คต่อ</div>
+      </section>
+
+      <section id="md">
+        <h2>.md คือของที่ทำให้ AI ตั้งหลักได้</h2>
+        <p>ผมไม่ได้อยากให้ AI ตื่นมาแล้วเดาเองทุกครั้งว่าต้องทำตัวยังไง เลยเอาของสำคัญไปเขียนไว้ใน `.md` เหมือน onboarding doc ของทีม เวลา session เริ่ม มันจะมี project context บางส่วนถูกโหลดเข้ามาให้ก่อน</p>
+        <p>ไฟล์พวกนี้ไม่ได้มีไว้สวยๆ มันเป็นตัวตั้งต้นว่า AI ควรทำงานแบบไหน คุยกับใคร ใช้อะไรเป็น source of truth และอะไรที่ห้ามทำเองถ้ายังไม่ได้ approve</p>
+        <div class="tool-list">
+          <div class="tool-row"><small>AGENTS.md</small><strong>กติกากลาง เช่น Linear/GitLab เป็น source of truth, handoff format, ห้ามส่ง Discord ข้ามห้องเอง</strong></div>
+          <div class="tool-row"><small>SOUL.md</small><strong>tone กับ identity ว่าให้คุยยังไง ไม่ให้เป็นบอทแข็งๆ</strong></div>
+          <div class="tool-row"><small>USER.md</small><strong>รู้ว่า Blue ทำงานยังไง ชอบให้คุยก่อนแก้ของเสี่ยง</strong></div>
+          <div class="tool-row"><small>MEMORY.md</small><strong>เรื่องยาวๆ ที่ต้องจำข้าม session เช่น infra, domain, agents, decisions</strong></div>
+          <div class="tool-row"><small>memory/*.md</small><strong>บันทึกรายวัน เอาไว้ search เวลาถามเรื่อง prior work หรือ decision เก่า</strong></div>
+          <div class="tool-row"><small>TOOLS.md</small><strong>note เฉพาะเครื่อง เช่น command หรือ tool ที่ environment นี้ใช้</strong></div>
+          <div class="tool-row"><small>HEARTBEAT.md</small><strong>ถ้ามีงาน periodic/proactive ก็ให้ AI รู้ว่าต้องตื่นมาดูอะไร</strong></div>
+        </div>
+        <p>จุดสำคัญคือ `.md` แต่ละตัวไม่ได้ถูกใช้เหมือนกันหมด บางตัวโหลดตอนเริ่ม session บางตัวต้อง search ก่อน บางตัว script อ่านเอง ไม่ได้หวังให้ AI จำเอาเองหมด</p>
+      </section>
+
+      <section id="skill">
+        <h2>skill ไม่ได้ยัดทุกอย่างเข้าหัว AI ตลอด</h2>
+        <p>ถ้าใส่ rule ทุกอย่างเข้าไปใน prompt เดียว มันดูครบดี แต่พอใช้จริง context รกมาก ผมเลยชอบวิธีที่ skill ถูกเรียกเฉพาะตอนงานตรงกับ description มากกว่า</p>
+        <p>เช่น ถ้าผมขอเขียนบทความ public แบบนี้ มันควรไปอ่าน `sekapp-editorial-article` ก่อน เพราะ skill นั้นเก็บ voice ของผมไว้ว่าไม่ให้เขียนแบบ AI summary ไม่ให้ใช้คำอย่าง “สรุปสั้นๆ” หรือ conclusion ที่ดู report เกินไป</p>
+        <p>แต่ถ้างานเป็น Docker ก็ไม่ควรโหลด skill บทความเข้ามาให้รก มันควรอ่าน Docker skill แทน ถ้างานสร้าง skill ก็อ่าน skill-creator ถ้างาน GitLab ก็อ่าน GitLab manager อะไรประมาณนี้</p>
+        <div class="code">user asks: "เขียนบทความแนวเดิม"<br>  ↓<br>skill metadata match: sekapp-editorial-article<br>  ↓<br>read SKILL.md<br>  ↓<br>write in Blue founder/devops voice<br><br>user asks: "debug container"<br>  ↓<br>read docker-related skill instead</div>
+        <p>ผมมอง skill เหมือน plugin ฝั่ง context มากกว่า ไม่ได้แปลว่ามันต้องไปยิง action ข้างนอกเสมอไป มันช่วยบอก AI ว่า “งานนี้ควรคิดแบบไหน” โดยไม่ต้องยัดทุกอย่างไว้ใน prompt เดียว</p>
+      </section>
+
+      <section id="context">
+        <h2>thread, context, subagent คือการแบ่ง RAM ของงาน</h2>
+        <p>ผมเริ่มมอง context เหมือน RAM ของทีม AI ถ้าโยนทุกอย่างเข้าไปหมด มันไม่ได้ฉลาดขึ้นเสมอ บางทีมันแค่สับสนขึ้น เพราะใน context มีทั้งเรื่องเก่า เรื่องใหม่ rule หลายชุด และข้อความที่อาจไม่เกี่ยวกับ task นี้เลย</p>
+        <p>ใน Discord ผมเลยชอบให้มี thread หรือห้องตามงาน/ตาม department มากกว่า ทุกอย่างไม่ควรไหลรวมกันหมด เพราะพอ context ยาวเกินไป agent จะเริ่มจำผิด จับประเด็นผิด หรือเอา requirement คนละงานมาปนกัน</p>
+        <p>งานใหญ่ก็เหมือนกัน ไม่จำเป็นต้องให้ agent ตัวเดียวแบกตั้งแต่คิด product ยัน deploy ถ้างานใหญ่พอ ก็ควรแตก subagent หรือแยก role ให้ทำเฉพาะส่วน แล้วค่อยส่งผลลัพธ์กลับมาให้ตัวหลักรวมอีกที</p>
+        <div class="tool-list">
+          <div class="tool-row"><small>Discord thread</small><strong>แยกบทสนทนาให้ context ของงานไม่ปนกัน</strong></div>
+          <div class="tool-row"><small>Session</small><strong>ให้ agent ทำงานในกรอบหนึ่ง ไม่ต้องลากทุกเรื่องในบริษัทเข้ามา</strong></div>
+          <div class="tool-row"><small>Subagent</small><strong>แตกงานเฉพาะทาง เช่น review, draft, debug, research แล้วส่งผลกลับ</strong></div>
+          <div class="tool-row"><small>Handoff</small><strong>สรุปข้าม context เป็นไฟล์ที่อ่านต่อได้ ไม่ต้องหวังให้แชทยาวๆ ยังชัดเสมอ</strong></div>
+        </div>
+        <p>ถ้า context คือพื้นที่ทำงาน เราต้องจัดโต๊ะให้มัน ไม่ใช่กวาดทุกอย่างในบริษัทมาเทใส่โต๊ะเดียวแล้วหวังว่ามันจะหยิบถูกชิ้นทุกครั้ง</p>
+      </section>
+
+
+
+      <section id="create">
+        <h2>ส่วน create project ผมไม่ให้ AI ไปสร้างเองมั่วๆ</h2>
+        <p>ตรงนี้ผมตกหล่นใน draft แรกเหมือนกัน ทั้งที่มันเป็น flow สำคัญมาก เพราะตอนสร้าง project ใหม่ ผมไม่ได้ให้ AI ไปกดสร้าง Linear, GitLab, Discord thread แยกเองมั่วๆ แล้วค่อยมาบอกว่าเสร็จ</p>
+        <p>ของ SekApp ตอนนี้ให้วิ่งผ่าน `project-orchestrator.py` เป็นหลักก่อน ตัวนี้ทำหน้าที่เหมือนตัวคุม ceremony ของการสร้าง project ใหม่ ต้อง plan ก่อน แล้วค่อย create หลัง manager approve</p>
+        <div class="code">project-orchestrator.py --mode plan<br>  ↓<br>project-create.py --mode dry-run<br>linear-create-plan.py --mode plan<br>gitlab-create-plan.py --mode plan<br>discord-thread-plan.py --mode plan<br>  ↓<br>manager / Blue approve<br>  ↓<br>project-orchestrator.py --mode create --confirm-project-create</div>
+        <p>เหตุผลที่ผมชอบ flow นี้คือมันกัน AI ใจร้อน ถ้า project name ซ้ำ, originator ไม่ชัด, sponsor ไม่ชัด, หรือ thread มีโอกาสซ้ำ มันควร fail ตั้งแต่ plan mode ไม่ใช่สร้างไปแล้วค่อยตามลบทีหลัง</p>
+        <div class="tool-list">
+          <div class="tool-row"><small>project-orchestrator.py</small><strong>ตัวคุม flow หลักของ new project: plan ก่อน create และต้องมี confirm guard</strong></div>
+          <div class="tool-row"><small>linear-create-plan.py</small><strong>เช็ค/สร้าง Linear project + epic โดยไม่ให้เดา owner หรือ sponsor เอง</strong></div>
+          <div class="tool-row"><small>gitlab-create-plan.py</small><strong>เช็ค/สร้าง GitLab repo ให้ path ไม่ชน และมี repo ก่อนส่งต่อ Dev/UXUI</strong></div>
+          <div class="tool-row"><small>discord-thread-plan.py</small><strong>เช็ค/สร้าง Discord thread ตามห้องที่ต้องใช้ พร้อม duplicate guard</strong></div>
+          <div class="tool-row"><small>project-create.py</small><strong>บันทึก registry/metadata ของ project ให้ตามย้อนกลับได้ว่าใครขอ ใคร sponsor หลักฐานคืออะไร</strong></div>
+        </div>
+        <p>ตรงนี้ต่างจาก handoff flow นิดนึง handoff คือส่งงานระหว่างทีมหลัง project มีตัวตนแล้ว แต่ create flow คือทำให้ project เกิดแบบมีหลักฐานตั้งแต่วันแรก มี Linear link, GitLab repo, Discord threads และ transaction/report path ให้ย้อนดูได้</p>
+      </section>
+
+      <section id="handoff">
+        <h2>handoff คือจุดที่ AI ส่งไม้ให้ระบบ</h2>
+        <p>เวลา agent ทำงานเสร็จ ผมไม่อยากให้มันจบที่ “เรียบร้อยแล้ว” ในแชท เพราะประโยคนั้นเอาไป sync อะไรต่อไม่ได้ ผมเลยให้ handoff เป็นไฟล์ `.md` ที่มี metadata ชัดๆ</p>
+        <p>ไฟล์นี้ทำหน้าที่เหมือน interface ระหว่าง AI กับระบบข้างนอก AI เขียน human-readable detail ได้ แต่ script ก็ต้องอ่าน key หลักๆ ได้ด้วย เช่น issue ไหน status จะไปไหน project อะไร ใครเป็น assignee ถัดไป</p>
+        <div class="code">/home/ec2-user/.openclaw/shared/handoff/to-devops-xxxx.md<br><br>LINEAR_ISSUE: SEK-123<br>LINEAR_STATUS: In Review<br>PROJECT_ID: SEK-123<br>REQUESTED_BY: blueflower<br>ASSIGNEE_AGENT: devops<br><br>## สิ่งที่ทำ<br>- Dev ทำ feature แล้ว<br>- MR พร้อม review<br>- ขอให้ DevOps deploy staging ต่อ</div>
+        <p>พอเป็น format แบบนี้ script ไม่ต้องเดาว่า agent หมายถึงอะไร และ manager ก็ยังเปิดอ่านเป็นภาษาคนได้ด้วย มันเลยเป็นจุดกลางที่ผมว่าค่อนข้าง practical</p>
+      </section>
+
+      <section id="scripts">
+        <h2>scripts หลังบ้านเป็นตัวรับไม้ต่อจาก AI</h2>
+        <p>หลังจากมีไฟล์ มี context มี handoff แล้ว script จะเป็นคนทำงาน deterministic ที่ไม่ควรให้ AI พูดลอยๆ เช่น sync status, notify ห้อง, audit label, snapshot cost หรือเช็ค health</p>
+        <p>ตัวที่เป็นแกนสุดตอนนี้คือ `relay.sh` มันอ่าน handoff file จาก shared folder แล้วเอาข้อมูลไปส่งต่อ Discord, sync Linear status/department label แล้วค่อยย้ายไฟล์ไป `processed/` พูดง่ายๆ คือถ้า agent บอกว่าส่งงานแล้ว แต่ไม่มีไฟล์ หรือไฟล์ไม่ถูก processed เราก็ยังไม่ควรเชื่อเต็มที่</p>
+        <div class="tool-list">
+          <div class="tool-row"><small>project-orchestrator.py</small><strong>คุม new project create flow: Linear + GitLab + Discord threads + registry</strong></div>
+          <div class="tool-row"><small>relay.sh</small><strong>อ่าน handoff → ส่ง Discord → sync Linear → move ไป processed</strong></div>
+          <div class="tool-row"><small>linear-watcher.sh</small><strong>ดู Linear status change แล้ว notify กลับ Discord</strong></div>
+          <div class="tool-row"><small>linear-audit.sh</small><strong>เช็ค label/status/link ที่ควรมี ลดงานหลุดหรือ metadata เพี้ยน</strong></div>
+          <div class="tool-row"><small>budget-check.sh</small><strong>ดู cost control state เช่น normal / alert / slow_down / force_stop</strong></div>
+          <div class="tool-row"><small>system-health.sh</small><strong>เช็ค Docker, disk, memory, endpoint แล้วส่งภาพรวมให้ DevOps</strong></div>
+          <div class="tool-row"><small>chat-log.sh</small><strong>ดึง chat log มาเก็บเป็น memory/report ให้ย้อนดูได้</strong></div>
+          <div class="tool-row"><small>memory-trigger.sh</small><strong>trigger งานสรุป memory เพื่อให้เรื่องสำคัญไม่หายหลัง session เปลี่ยน</strong></div>
+        </div>
+        <p>ผมชอบแยกแบบนี้เพราะ AI ทำส่วนที่ต้องคิด ส่วน script ทำส่วนที่ต้องเช็คซ้ำได้ อะไรที่ควรตรวจย้อนหลังได้ก็ให้มีไฟล์ มี log มี status ทิ้งไว้ ไม่ใช่เชื่อจากแชทอย่างเดียว</p>
+      </section>
+
+      <section id="flow">
+        <h2>ถ้าเอามาต่อกัน งานหนึ่งชิ้นจะวิ่งประมาณนี้</h2>
+        <p>สมมติ manager สั่ง feature ใหม่ใน Discord งานจะเริ่มจาก agent รับ context ของห้องนั้น อ่าน rule ที่ถูกโหลดมา ถ้าต้องใช้ skill เฉพาะทางก็ไปอ่าน skill ก่อน ถ้ามีเรื่องเก่าต้องอ้างอิงก็ search memory หรืออ่านไฟล์ที่เกี่ยวข้อง</p>
+        <p>จากนั้น agent อาจไปสร้าง/อ่าน Linear issue ไปดู GitLab repo ทำงานใน branch หรือให้ subagent ช่วยบางส่วน พอจบ stage ของตัวเองก็ไม่ควรแค่บอกว่าเสร็จ แต่ต้องเขียน handoff file ให้ script รับต่อ</p>
+        <div class="code">Discord message<br>  ↓<br>OpenClaw session loads project context<br>  ↓<br>skill selection / memory search / file read<br>  ↓<br>agent work or subagent split<br>  ↓<br>if new project: project-orchestrator plan/create<br>  ↓<br>Linear / GitLab / staging evidence<br>  ↓<br>handoff .md<br>  ↓<br>relay.sh / watcher / audit<br>  ↓<br>Discord + Linear sync<br>  ↓<br>next agent or manager approval</div>
+        <p>พอมองแบบนี้ AI team มันไม่ใช่หลายแชทแล้ว แต่มันเป็น pipeline เล็กๆ ที่มี AI อยู่หลายจุด และมี script คอยทำให้ state ในระบบขยับจริง</p>
+      </section>
+
+      <section id="next">
+        <h2>อันนี้ยังต้องปรับอีกเยอะ</h2>
+        <p>ตอนนี้ผมยังไม่กล้าพูดว่า flow นี้เนียนแล้วนะ หลายจุดยังต้อง audit เพิ่ม เช่น script บางตัวเป็น soft enforcement มากกว่า hard block, บาง action ยังต้องพึ่ง manager approve, บางครั้ง agent ยังลืมใส่ metadata ให้ครบ</p>
+        <p>แต่ผมเริ่มชอบทิศทางนี้ เพราะอย่างน้อยมันบังคับให้ AI ทำงานผ่านของที่ตรวจได้ ถ้าทำจริงต้องมีไฟล์ มี status มี link มี log ถ้าไม่มี ก็ไม่ต้องมานั่งเถียงกับ AI ว่ามันทำหรือยัง</p>
+        <div class="cta"><p>บทต่อไปผมน่าจะลงเรื่อง source of truth แบบจริงจัง ว่าทำไมผมให้ Linear / GitLab สำคัญกว่า memory ของ AI เพราะพอระบบมีหลาย agent หลาย thread หลาย script ความจำในหัว AI อย่างเดียวมันเอาไม่อยู่จริงๆ</p></div>
+      </section>
+    </article>
+    <aside class="sharebox"><span>SekApp Lab</span></aside>
+  </main>
+
+  <nav class="series-nav" aria-label="SekApp article series navigation">
+    <a class="prev" href="/2/"><small>← บทก่อนหน้า</small><strong>AI เพียวๆ ไม่พอ ผมเลยต้องเอา script มาคุมอีกชั้น</strong></a>
+    <a class="next" href="/4/"><small>บทต่อไป →</small><strong>ถ้าวันนึง AI หายไป งานก็ยังต้องไปต่อได้</strong></a>
+  </nav>
+  <footer class="footer">SekApp Stories</footer>
+</body>
+</html>

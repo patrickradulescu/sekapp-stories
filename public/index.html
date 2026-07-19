@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SekApp Stories | AI team series</title>
+  <meta name="description" content="รวมบทความ SekApp Stories ว่าผมใช้ OpenClaw + AI multi-agent มาต่อกับ script, Linear, GitLab, Discord และ source of truth ยังไง" />
+  <meta property="og:title" content="SekApp Stories" />
+  <meta property="og:description" content="AI team series จาก SekApp Lab" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medium.patkingdom.xyz/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#242424;--muted:#6b6b6b;--line:#e6e6e6;--max:860px}
+    *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans Thai",system-ui,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}a{color:inherit}
+    .topbar{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:10}
+    .topbar-inner{max-width:1120px;height:58px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em}.brand-mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-size:15px}
+    main{max-width:var(--max);margin:0 auto;padding:72px 22px 88px}
+    .eyebrow{color:#7c2d12;font-size:14px;font-weight:700;margin-bottom:18px}
+    h1{font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(42px,7vw,72px);line-height:1.12;letter-spacing:-.05em;margin:0 0 18px}
+    .lead{font-family:"Noto Serif Thai",Georgia,serif;font-size:22px;line-height:1.8;color:#333;margin:0 0 34px;max-width:720px}
+    .architecture-preview{margin:0 0 46px;padding:18px 0 26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .architecture-preview img{display:block;width:100%;height:auto;background:#07111f;border-radius:2px}
+    .architecture-preview figcaption{margin-top:12px;color:var(--muted);font-size:14px;line-height:1.65;text-align:center}
+    .image-button{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in}
+    .lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(0,0,0,.86)}
+    .lightbox:target{display:flex}
+    .lightbox img{position:relative;z-index:1;max-width:min(96vw,1800px);max-height:88vh;width:auto;height:auto;border-radius:4px;box-shadow:0 18px 80px rgba(0,0,0,.42)}
+    .lightbox .backdrop{position:absolute;inset:0;z-index:0;padding:0;border:0;background:transparent;cursor:zoom-out}
+    .lightbox .close{position:absolute;z-index:2;right:24px;top:18px;color:#fff;text-decoration:none;font-size:34px;line-height:1;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);width:44px;height:44px;border-radius:999px;display:grid;place-items:center}
+    .lightbox-caption{position:absolute;z-index:2;left:24px;right:24px;bottom:16px;color:rgba(255,255,255,.78);font-size:14px;text-align:center}
+    .list{border-top:1px solid var(--line)}
+    .item{display:grid;grid-template-columns:110px 1fr;gap:22px;padding:28px 0;border-bottom:1px solid var(--line);text-decoration:none}
+    .item small{color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding-top:5px}
+    .item strong{display:block;font-family:"Noto Serif Thai",Georgia,serif;font-size:27px;line-height:1.35;letter-spacing:-.025em;margin-bottom:8px}
+    .item span{display:block;color:var(--muted);font-size:16px;line-height:1.7}
+    .item:hover strong{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+    footer{max-width:var(--max);margin:0 auto;padding:28px 22px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    @media(max-width:720px){main{padding:48px 16px 64px}.item{grid-template-columns:1fr;gap:4px;padding:24px 0}.item strong{font-size:24px}footer{padding-left:16px;padding-right:16px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="/" aria-label="SekApp Stories"><span class="brand-mark">S</span><span>SekApp Stories</span></a></div></header>
+  <main>
+    <div class="eyebrow">AI team series</div>
+    <h1>ผมลองทำ AI team ให้ทำงานเป็นระบบ</h1>
+    <p class="lead">รวมบทความสั้นๆ ที่ผมค่อยๆ แกะว่าใช้ OpenClaw + AI multi-agent มาต่อกับ script, Linear, GitLab, Discord และ source of truth ยังไง</p>
+    <figure class="architecture-preview">
+      <button class="image-button" type="button" data-lightbox-src="/assets/sekapp-openclaw-real-architecture-map-v7-aura-overlayer.png" aria-label="ขยายรูป architecture map">
+        <img src="/assets/sekapp-openclaw-real-architecture-map-v7-aura-overlayer.png" alt="SekApp / OpenClaw architecture map showing people, AI agents, Aura, permission, tools, delivery, governance and cost control" loading="eager" />
+      </button>
+      <figcaption>Architecture map ล่าสุดของ setup นี้: คน, AI agents, Aura, permission, scripts, Linear/GitLab, deploy, QA และ cost control — กดรูปเพื่อขยายดูรายละเอียด</figcaption>
+    </figure>
+    <section class="list" aria-label="Article list">
+      <a class="item" href="/1/"><small>บทที่ 1</small><div><strong>ผมลองสร้างบริษัทที่มี AI เป็นทีมงานจริงๆ</strong><span>เปิดจักรวาล SekApp AI team ว่าทำไมผมลองแยก AI ออกเป็น role เหมือนทีม software เล็กๆ</span></div></a><a class="item" href="/2/"><small>บทที่ 2</small><div><strong>AI เพียวๆ ไม่พอ ผมเลยต้องเอา script มาคุมอีกชั้น</strong><span>พอลองให้ AI ส่งงานต่อกันจริงๆ ผมเริ่มไม่เชื่อคำว่าเสร็จถ้าไม่มีไฟล์ log หรือ status ให้ดู</span></div></a><a class="item" href="/3/"><small>บทที่ 3</small><div><strong>งานหนึ่งชิ้นใน AI team มันวิ่งผ่านอะไรบ้าง</strong><span>แกะ flow จริงตั้งแต่ .md, skill, context, thread, subagent, handoff ไปจนถึง script หลังบ้าน</span></div></a><a class="item" href="/4/"><small>บทที่ 4</small><div><strong>ถ้าวันนึง AI หายไป งานก็ยังต้องไปต่อได้</strong><span>ทำไม Linear / GitLab ถึงเป็น source of truth เพื่อให้คนกับ AI รับไม้ต่อกันได้</span></div></a><a class="item" href="/5/"><small>บทที่ 5</small><div><strong>เบื้องหลัง AI ทีมของผม</strong><span>แต่ละ agent เริ่มงานยังไง อ่านอะไร เชื่ออะไร ส่งต่องานยังไง และ Qdrant อยู่ตรงไหนใน architecture</span></div></a>
+    </section>
+  </main>
+  <div class="lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="backdrop" type="button" aria-label="ปิดรูป"></button>
+    <img alt="SekApp / OpenClaw architecture map enlarged" />
+    <button class="close" type="button" aria-label="ปิดรูป">×</button>
+    <div class="lightbox-caption">กดนอกรูป หรือ Esc เพื่อปิด</div>
+  </div>
+  <script>
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox?.querySelector('img');
+    const closeLightbox = () => { if (!lightbox) return; lightbox.style.display = 'none'; lightbox.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+    document.querySelectorAll('[data-lightbox-src]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = button.getAttribute('data-lightbox-src') || '';
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lightbox?.querySelectorAll('.backdrop,.close').forEach((el) => el.addEventListener('click', closeLightbox));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
+  </script>
+  <footer>SekApp Stories</footer>
+</body>
+</html>

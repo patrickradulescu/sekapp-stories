@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เบื้องหลัง AI ทีมของผม | SekApp Stories</title>
+  <meta name="description" content="แต่ละ AI agent ในทีมผมเริ่มงานยังไง อ่านไฟล์อะไร เชื่อ Linear/GitLab ยังไง ส่งงานต่อยังไง และ Qdrant อยู่ตรงไหนใน architecture" />
+  <meta property="og:title" content="เบื้องหลัง AI ทีมของผม" />
+  <meta property="og:description" content="แต่ละตัวเริ่มงานยังไง อ่านอะไร เชื่ออะไร และส่งต่องานยังไง" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://medium.patkingdom.xyz/5/" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fff;--ink:#242424;--soft:#3f3f3f;--muted:#6b6b6b;--line:#e6e6e6;--max:720px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Thai",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}a{color:inherit}.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1120px;height:58px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.02em}.brand-mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-size:15px}.navlinks{display:flex;gap:18px;font-size:14px;color:var(--muted)}.navlinks a{text-decoration:none}.article-head{max-width:var(--max);margin:0 auto;padding:68px 22px 28px}.eyebrow{color:#7c2d12;font-size:14px;font-weight:700;margin-bottom:18px}h1{margin:0;font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(38px,6.8vw,64px);line-height:1.13;letter-spacing:-.045em;font-weight:700;color:#161616}.subtitle{margin:22px 0 0;font-size:clamp(18px,2.2vw,22px);line-height:1.7;color:var(--soft);font-weight:400}.byline{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;color:var(--muted);font-size:14px}.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff3e8;color:#c2410c;font-weight:800;flex:0 0 auto}.byline strong{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}.cover{max-width:960px;margin:18px auto 52px;padding:0 22px}.cover figure{margin:0}.diagram{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 0;background:#fff}.flow{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;gap:14px;align-items:center}.box{min-height:110px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0}.box small{display:block;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}.box b{display:block;font-size:17px;line-height:1.4}.box span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:7px}.arrow{color:#999;text-align:center;font-size:24px}.caption{margin:12px 0 0;text-align:center;color:var(--muted);font-size:14px;line-height:1.6}.architecture-map{max-width:1120px;margin:26px auto 52px;padding:0 22px}.architecture-map figure{margin:0}.architecture-map img{width:100%;height:auto;display:block;background:#07111f;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.image-button{display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in}.lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(0,0,0,.86)}.lightbox img{position:relative;z-index:1;max-width:min(96vw,1800px);max-height:88vh;width:auto;height:auto;border-radius:4px;box-shadow:0 18px 80px rgba(0,0,0,.42)}.lightbox .backdrop{position:absolute;inset:0;z-index:0;padding:0;border:0;background:transparent;cursor:zoom-out}.lightbox .close{position:absolute;z-index:2;right:24px;top:18px;color:#fff;text-decoration:none;font-size:34px;line-height:1;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);width:44px;height:44px;border-radius:999px;display:grid;place-items:center}.lightbox-caption{position:absolute;z-index:2;left:24px;right:24px;bottom:16px;color:rgba(255,255,255,.78);font-size:14px;text-align:center}.layout{max-width:1120px;margin:0 auto;padding:0 22px 88px;display:grid;grid-template-columns:170px minmax(0,var(--max)) 170px;gap:34px;align-items:start}.rail{position:sticky;top:90px;color:var(--muted);font-size:13px}.rail a{display:block;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0}.rail b{display:block;color:var(--ink);margin-bottom:8px;font-size:13px}.sharebox{position:sticky;top:90px;color:var(--muted);font-size:13px;text-align:right}.sharebox span{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:#fff}article{min-width:0}article h2{margin:52px 0 14px;font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(28px,3vw,36px);line-height:1.28;letter-spacing:-.035em;color:#151515}article h2:first-child{margin-top:0}article p{margin:18px 0;font-family:"Noto Serif Thai",Georgia,serif;font-size:20px;line-height:1.9;color:#292929}.quote{margin:34px 0;padding:0 0 0 24px;border-left:4px solid #111;font-family:"Noto Serif Thai",Georgia,serif;font-size:clamp(24px,3vw,31px);line-height:1.65;color:#111;letter-spacing:-.025em}.tool-list{margin:30px 0 34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.tool-row{display:grid;grid-template-columns:165px 1fr;gap:22px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}.tool-row:first-child{border-top:0}.tool-row small{color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.tool-row strong{color:#171717;font-size:18px;line-height:1.55;font-weight:700}.code{margin:28px 0;padding:18px 20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.75;color:#333;background:#fafafa;overflow:auto;white-space:pre-wrap}.cta{margin-top:44px;padding-top:24px;border-top:1px solid var(--line)}.series-nav{max-width:var(--max);margin:0 auto 34px;padding:0 22px 26px;display:grid;grid-template-columns:1fr 1fr;gap:20px}.series-nav a{text-decoration:none;border-top:1px solid var(--line);padding-top:14px}.series-nav small{display:block;color:var(--muted);font-size:13px;margin-bottom:4px}.series-nav strong{font-size:16px;line-height:1.45}.footer{max-width:var(--max);margin:0 auto;padding:28px 22px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}@media(max-width:980px){.layout{grid-template-columns:1fr;max-width:var(--max);gap:24px}.rail,.sharebox{position:static;text-align:left}.rail{display:none}.sharebox{border-top:1px solid var(--line);padding-top:18px}}@media(max-width:720px){.topbar-inner{padding:0 16px}.navlinks{display:none}.article-head{padding-top:44px}.cover{margin-bottom:38px;padding:0 16px}.architecture-map{padding:0 16px;margin-bottom:38px}.layout,.article-head,.footer{padding-left:16px;padding-right:16px}article p{font-size:18px;line-height:1.9}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.box{min-height:auto}.tool-row{grid-template-columns:1fr;gap:4px;padding:15px 0}.series-nav{grid-template-columns:1fr;padding-left:16px;padding-right:16px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="/" aria-label="SekApp Stories"><span class="brand-mark">S</span><span>SekApp Stories</span></a><nav class="navlinks" aria-label="Article sections"><a href="#start">Start</a><a href="#truth">Truth</a><a href="#handoff">Handoff</a></nav></div></header>
+
+  <section class="article-head">
+    <div class="eyebrow">บทที่ 5 · Agent architecture</div>
+    <h1>เบื้องหลัง AI ทีมของผม</h1>
+    <p class="subtitle">Agent 1 ตัวไม่ได้เริ่มจากแชทว่างๆ แต่มัน boot จาก folder, rule, memory, shared guide แล้วค่อยไปเช็ค Linear/GitLab ก่อนขยับงานจริง</p>
+    <div class="byline"><div class="avatar">🍊</div><div><strong>Blue / SekApp Lab</strong><span>Technical story · อ่านประมาณ 6 นาที</span></div></div>
+  </section>
+
+  <section class="cover"><figure><img src="/5/assets/agent-folder-tree-knowledge-map.png" alt="Agent Knowledge Tree: folder และ source ที่ AI agent อ่านตอนเริ่ม session" style="width:100%;height:auto;display:block;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff" /><figcaption class="caption">ตัวอย่าง knowledge tree ของ agent 1 ตัว: อ่าน folder ตัวเองก่อน แล้วค่อยไป shared rules และ source of truth</figcaption></figure></section>
+
+  <main class="layout">
+    <aside class="rail"><b>ในบทความนี้</b><a href="#why">ทำไมต้องมี architecture</a><a href="#start">agent start ยังไง</a><a href="#truth">เชื่อข้อมูลจากไหน</a><a href="#handoff">ส่งงานต่อยังไง</a><a href="#archive">Qdrant อยู่ตรงไหน</a></aside>
+    <article>
+      <section id="why">
+        <p>ใน setup ของผม agent แต่ละตัวไม่ได้เริ่มจาก prompt ลอยๆ มันมี boot process ของตัวเองก่อนจะรับงาน</p>
+        <p>ผมสนใจจุดนี้มากกว่า model ว่าฉลาดแค่ไหน คือมันต้องเริ่มจาก context ที่ถูกต้อง เชื่อข้อมูลชุดเดียวกัน และรู้ว่าข้อมูลไหนเป็นแค่ความจำเก่า</p>
+        <div class="quote">ผมไม่ได้พยายามทำให้ AI จำทุกอย่าง แต่พยายามทำให้มันรู้ว่าต้องไปอ่านอะไร</div>
+        <p>ถ้าไม่มี architecture ตรงนี้ state งานจะกระจายเร็วมาก คนนึงบอกเสร็จ อีกคนนึงยังไม่เห็น MR อีกตัวนึงหยิบ conversation เก่ามาตอบเหมือนเป็นข้อมูลล่าสุด</p>
+      </section>
+    </article>
+  </main>
+
+  <section class="architecture-map" aria-label="SekApp OpenClaw architecture map">
+    <figure>
+      <button class="image-button" type="button" data-lightbox-src="/assets/sekapp-openclaw-real-architecture-map-v7-aura-overlayer.png" aria-label="ขยายรูป architecture map">
+        <img src="/assets/sekapp-openclaw-real-architecture-map-v7-aura-overlayer.png" alt="SekApp / OpenClaw real architecture map: people, AI agents, Aura executive intelligence layer, permission, automation, dashboards and delivery pipeline" loading="lazy" />
+      </button>
+      <figcaption class="caption">ภาพรวม architecture ล่าสุดของ SekApp/OpenClaw: Aura อยู่เป็น executive intelligence layer ครอบระบบ ไม่ใช่ step ใน workflow ส่วนงานจริงยังวิ่งผ่าน approval, Linear, GitLab, deploy, staging และ QA — กดรูปเพื่อขยายดูรายละเอียด</figcaption>
+    </figure>
+  </section>
+
+  <main class="layout">
+    <aside class="rail" aria-hidden="true"></aside>
+    <article>
+      <section id="start">
+        <h2>ผมแยก workspace ให้แต่ละ agent</h2>
+        <p>แต่ละ agent มี folder ของตัวเอง เช่น dev, devops, qa, uxui, po อันนี้ไม่ได้ทำเพื่อให้ดูเป็น role play แต่เพื่อแยก operating context ให้ชัด</p>
+        <div class="code">workspace-dev/
+  AGENTS.md      # rules ของ Dev
+  SOUL.md        # identity / tone
+  MEMORY.md      # long-term memory ของ agent
+  memory/        # daily notes + chat logs
+
+shared/
+  README.md
+  knowledge/dev-guide.md
+  standards/*.md
+  scripts/*.md</div>
+        <p>ตอน start agent ส่วนใหญ่จะถูกสั่งให้อ่านของตัวเองก่อน เช่น AGENTS.md, SOUL.md, memory/ แล้วค่อยอ่าน shared/README.md กับ role guide ของตัวเอง</p>
+        <p>ตรงนี้ช่วยลดปัญหาว่า Dev คิดแบบ QA หรือ QA ไปทำตัวเป็น DevOps เพราะแต่ละตัวมีกติกาของตัวเอง มี memory ของตัวเอง และมี guide ของ role ตัวเอง</p>
+      </section>
+
+      <section id="truth">
+        <h2>แต่ source of truth ผมไม่ให้ไปอยู่ใน memory</h2>
+        <p>memory ช่วยจำ context ได้ แต่เวลาตอบเรื่องสถานะงาน requirement code deploy หรือ QA ผมให้กลับไปเช็ค Linear กับ GitLab ก่อน</p>
+        <div class="tool-list">
+          <div class="tool-row"><small>Linear</small><strong>issue, status, label, assignee, project, next step</strong></div>
+          <div class="tool-row"><small>GitLab</small><strong>repo, branch, MR, diff, commit, file, artifact</strong></div>
+          <div class="tool-row"><small>Shared files</small><strong>handoff และ operational context ใช้ประกอบ แต่ไม่ใช่ final truth</strong></div>
+          <div class="tool-row"><small>Memory</small><strong>ช่วยจำสิ่งที่คุยมา แต่ต้อง cross-check ก่อนใช้ตัดสิน state ปัจจุบัน</strong></div>
+        </div>
+        <p>ถ้า AI บอกว่าส่ง QA แล้ว แต่ Linear ยังไม่ได้อยู่ฝั่ง QA ผมยังถือว่างานยังไม่ไป QA ถ้า AI บอกว่าแก้ code แล้ว แต่ GitLab ไม่มี commit หรือ MR ให้ดู ผมก็ยังไม่ถือว่ามีของจริง</p>
+        <p>อันนี้ทำให้ระบบดูแข็งขึ้นนิดนึง แต่ผมชอบ เพราะมันบังคับให้ทุกคำว่า “เสร็จแล้ว” ต้องมีอะไรให้คนเปิดเช็คต่อได้</p>
+      </section>
+
+      <section id="handoff">
+        <h2>การส่งงานต่อไม่ได้ให้ AI ทักกันมั่วๆ</h2>
+        <p>ผมเคยลองหลายแบบ สุดท้าย flow ที่คุมง่ายกว่าคือให้ agent สร้าง handoff file แล้วมี relay script ไปส่งต่อเอง</p>
+        <div class="code">UX/UI done
+  ↓
+write shared/handoff/to-dev-project-timestamp.md
+  ↓
+relay.sh reads file
+  ↓
+Discord delivery + Linear sync
+  ↓
+Dev receives work with issue + links + context</div>
+        <p>ข้อดีคือมันมี artifact เหลือไว้ ถ้างานหายหรือคนต้อง audit ย้อนหลัง อย่างน้อยยังมีไฟล์ handoff กับ Linear/GitLab link ให้ตามต่อ ไม่ใช่มีแค่ข้อความในแชทที่หาไม่เจอ</p>
+        <p>อีกอย่างคือมันลด cost และลดความมั่วของการให้ AI คุยข้าม agent ตรงๆ เพราะการส่งงานกลายเป็น file + script + status update ที่ตรวจย้อนหลังได้</p>
+      </section>
+
+      <section id="archive">
+        <h2>Qdrant มี แต่ผมไม่ให้เป็น default truth</h2>
+        <p>ระบบมี Qdrant เก็บ conversation archive กับ snapshot บางอย่างไว้จริง อันนี้มีประโยชน์มากตอนอยากค้นย้อนหลัง เช่น เคยคุยอะไรไว้ handoff เก่าหาย หรืออยาก audit ว่า decision มาจากไหน</p>
+        <p>แต่ผมไม่อยากให้ agent ทุกตัวค้น Qdrant ทุกครั้งแล้วเอามาตอบเป็นสถานะล่าสุด เพราะ vector search เก่งเรื่อง recall ไม่ได้แปลว่ามันคือ current state ของงาน</p>
+        <p>policy ที่ผมล็อกไว้เลยคือ Qdrant ใช้เมื่อคนสั่งค้นย้อนหลัง หรือใช้ recover context เท่านั้น ถ้าเอาข้อมูลจาก Qdrant มาใช้ ต้องบอกชัดว่ามาจาก archive แล้วต้อง cross-check กับ Linear/GitLab ก่อน</p>
+        <div class="quote">Qdrant เอาไว้จำ conversation เก่า แต่ Linear กับ GitLab เอาไว้บอกว่างานตอนนี้เป็นยังไง</div>
+      </section>
+
+      <section id="close">
+        <h2>สุดท้ายผมออกแบบให้มันรับไม้ต่อกันได้</h2>
+        <p>ภาพที่ผมอยากได้ไม่ใช่ AI ที่เก่งที่สุดตัวเดียว แต่เป็นทีมเล็กๆ ที่แต่ละตัวรู้ขอบเขตตัวเอง รู้ว่าจะอ่าน context จากไหน เชื่ออะไร ส่งต่อยังไง และต้องรอ approval ตรงไหน</p>
+        <p>ถ้า AI หาย คนยังเปิด Linear / GitLab / Discord / staging แล้วทำต่อได้ ถ้า AI กลับมา มันก็อ่าน source เดียวกับคนแล้วทำต่อจาก state ล่าสุด ไม่ต้องเริ่มจากการเดาว่าก่อนหน้านี้คุยอะไรไว้</p>
+        <div class="cta"><p>ตอนนี้ flow นี้ยังถูกปรับอยู่เรื่อยๆ แต่สำหรับผม architecture เริ่มสำคัญพอๆ กับ prompt หรือ model แล้ว</p></div>
+      </section>
+    </article>
+    <aside class="sharebox"><span>SekApp Lab</span></aside>
+  </main>
+
+  <div class="lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="backdrop" type="button" aria-label="ปิดรูป"></button>
+    <img alt="SekApp / OpenClaw architecture map enlarged" />
+    <button class="close" type="button" aria-label="ปิดรูป">×</button>
+    <div class="lightbox-caption">กดนอกรูป หรือ Esc เพื่อปิด</div>
+  </div>
+  <script>
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox?.querySelector('img');
+    const closeLightbox = () => { if (!lightbox) return; lightbox.style.display = 'none'; lightbox.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+    document.querySelectorAll('[data-lightbox-src]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = button.getAttribute('data-lightbox-src') || '';
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lightbox?.querySelectorAll('.backdrop,.close').forEach((el) => el.addEventListener('click', closeLightbox));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
+  </script>
+
+  <nav class="series-nav" aria-label="SekApp article series navigation">
+    <a class="prev" href="/4/"><small>← บทก่อนหน้า</small><strong>ถ้าวันนึง AI หายไป งานก็ยังต้องไปต่อได้</strong></a>
+    <a class="next" href="/"><small>กลับหน้ารวม</small><strong>SekApp Stories</strong></a>
+  </nav>
+  <footer class="footer">SekApp Stories</footer>
+</body>
+</html>

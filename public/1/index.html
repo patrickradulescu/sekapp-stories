@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ผมลองสร้างบริษัทที่มี AI เป็นทีมงานจริงๆ | SekApp Stories</title>
+  <meta name="description" content="เบื้องหลังการทดลองทำบริษัท AI-native ที่มี PO, UX/UI, Dev, DevOps, QA และทีมอื่นๆ เป็น AI agents ทำงานผ่าน Discord, Linear และ GitLab" />
+  <meta property="og:title" content="ผมลองสร้างบริษัทที่มี AI เป็นทีมงานจริงๆ" />
+  <meta property="og:description" content="ไม่ใช่แค่ chatbot แต่เป็นทีม AI ที่มี role, handoff, approval, cost dashboard และระบบหลังบ้านจริง" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://medium.patkingdom.xyz/1/" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #242424;
+      --soft-ink: #3f3f3f;
+      --muted: #6b6b6b;
+      --light: #f7f7f7;
+      --line: #e6e6e6;
+      --accent: #f97316;
+      --accent-soft: #fff3e8;
+      --max: 720px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Noto Sans Thai", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      max-width: 1120px;
+      height: 58px;
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #111;
+      color: #fff;
+      font-size: 15px;
+    }
+    .navlinks {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .navlinks a { text-decoration: none; }
+    .navlinks a:hover { color: var(--ink); }
+
+    .article-head {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 68px 22px 28px;
+    }
+    .eyebrow {
+      color: #7c2d12;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-family: "Noto Serif Thai", Georgia, serif;
+      font-size: clamp(38px, 6.8vw, 66px);
+      line-height: 1.13;
+      letter-spacing: -.045em;
+      font-weight: 700;
+      color: #161616;
+    }
+    .subtitle {
+      margin: 22px 0 0;
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.7;
+      color: var(--soft-ink);
+      font-weight: 400;
+    }
+    .byline {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: #c2410c;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .byline strong {
+      display: block;
+      color: var(--ink);
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .cover {
+      max-width: 960px;
+      margin: 18px auto 52px;
+      padding: 0 22px;
+    }
+    .cover figure { margin: 0; }
+    .cover-card {
+      overflow: hidden;
+      background: #fff;
+    }
+    .cover-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .caption {
+      margin: 12px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .layout {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px 88px;
+      display: grid;
+      grid-template-columns: 170px minmax(0, var(--max)) 170px;
+      gap: 34px;
+      align-items: start;
+    }
+    .rail {
+      position: sticky;
+      top: 90px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .rail a {
+      display: block;
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .rail b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .sharebox {
+      position: sticky;
+      top: 90px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+    .sharebox span {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: #fff;
+    }
+
+    article {
+      min-width: 0;
+    }
+    article h2 {
+      margin: 56px 0 14px;
+      font-family: "Noto Serif Thai", Georgia, serif;
+      font-size: clamp(28px, 3vw, 38px);
+      line-height: 1.28;
+      letter-spacing: -.035em;
+      color: #151515;
+    }
+    article h2:first-child { margin-top: 0; }
+    article p {
+      margin: 18px 0;
+      font-family: "Noto Serif Thai", Georgia, serif;
+      font-size: 20px;
+      line-height: 1.9;
+      color: #292929;
+    }
+    article ul {
+      margin: 18px 0;
+      padding-left: 25px;
+      font-family: "Noto Serif Thai", Georgia, serif;
+      font-size: 20px;
+      line-height: 1.85;
+      color: #292929;
+    }
+    article li { margin: 8px 0; }
+    .quote {
+      margin: 34px 0;
+      padding: 0 0 0 24px;
+      border-left: 4px solid #111;
+      font-family: "Noto Serif Thai", Georgia, serif;
+      font-size: clamp(24px, 3vw, 32px);
+      line-height: 1.65;
+      color: #111;
+      letter-spacing: -.025em;
+    }
+    .note {
+      margin: 30px 0;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: var(--light);
+      border: 1px solid var(--line);
+      font-family: "Noto Sans Thai", sans-serif;
+      color: var(--soft-ink);
+    }
+    .note p, .note ul {
+      font-family: "Noto Sans Thai", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      margin: 10px 0;
+    }
+    .tool-list {
+      margin: 30px 0 34px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tool-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 22px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .tool-row:first-child { border-top: 0; }
+    .tool-row small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .tool-row strong {
+      color: #171717;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+    .stack {
+      margin: 32px 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      border-top: 1px solid var(--line);
+    }
+    .stack-row:first-child { border-top: 0; }
+    .stack-label {
+      padding: 15px 16px;
+      font-weight: 800;
+      color: #111;
+      background: #fafafa;
+      border-right: 1px solid var(--line);
+    }
+    .stack-desc {
+      padding: 15px 16px;
+      color: var(--soft-ink);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .cta {
+      margin-top: 46px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+    }
+    .cta h2 { margin-top: 0; }
+    .cta p { font-family: "Noto Serif Thai", Georgia, serif; font-size: 20px; line-height: 1.9; color: #292929; }
+
+
+    .series-nav {
+      max-width: var(--max);
+      margin: 6px auto 46px;
+      padding: 26px 22px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .series-nav a {
+      text-decoration: none;
+      color: var(--ink);
+      min-width: 0;
+    }
+    .series-nav small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .series-nav strong {
+      display: block;
+      font-family: "Noto Serif Thai", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+    .series-nav .next { text-align: right; }
+    .series-nav .empty { visibility: hidden; }
+
+    .footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 22px 60px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; max-width: var(--max); gap: 24px; }
+      .rail, .sharebox { position: static; text-align: left; }
+      .rail { display: none; }
+      .sharebox { border-top: 1px solid var(--line); padding-top: 18px; }
+    }
+    @media (max-width: 720px) {
+      .series-nav { grid-template-columns: 1fr; gap: 18px; margin-bottom: 34px; padding-left: 16px; padding-right: 16px; }
+      .series-nav .next { text-align: left; }
+      .series-nav .empty { display: none; }
+
+      .topbar-inner { padding: 0 16px; }
+      .navlinks { display: none; }
+      .article-head { padding-top: 44px; }
+      .cover { margin-bottom: 38px; padding: 0 16px; }
+      .layout, .article-head, .footer { padding-left: 16px; padding-right: 16px; }
+      article p, article ul { font-size: 18px; line-height: 1.9; }
+      .tool-row { grid-template-columns: 1fr; gap: 4px; padding: 15px 0; }
+      .stack-row { grid-template-columns: 1fr; }
+      .stack-label { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/" aria-label="SekApp Stories">
+        <span class="brand-mark">S</span>
+        <span>SekApp Stories</span>
+      </a>
+      <nav class="navlinks" aria-label="Article sections">
+        <a href="#story">Story</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#resource">Resource</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="article-head">
+    <div class="eyebrow">บทที่ 1 · AI-native company experiment</div>
+    <h1>ผมลองสร้างบริษัทที่มี AI เป็นทีมงานจริงๆ</h1>
+    <p class="subtitle">ตอนแรกก็แค่ใช้ AI ช่วยงาน dev ตามปกติ แต่พอลองไปเรื่อยๆ ผมเริ่มอยากรู้ว่า ถ้าให้ AI หลายตัวทำงานต่อกันเป็นทีมจริงๆ มันจะไปได้แค่ไหน</p>
+    <div class="byline">
+      <div class="avatar">🍊</div>
+      <div>
+        <strong>Blue / SekApp Lab</strong>
+        <span>Technical story · อ่านประมาณ 8 นาที</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cover">
+    <figure>
+      <div class="cover-card">
+        <img src="/1/assets/sekapp-ai-workflow-clean-hero.png" alt="Clean diagram showing Discord, Linear, GitLab and Staging connected as an AI team workflow" loading="eager" />
+      </div>
+      <figcaption class="caption">workflow คร่าวๆ: คุยงาน → แตก task → ทำ repo → preview บน staging</figcaption>
+    </figure>
+  </section>
+
+  <main class="layout">
+    <aside class="rail">
+      <b>ในบทความนี้</b>
+      <a href="#story">เริ่มจากความสงสัย</a>
+      <a href="#team">ให้ AI เป็นทีม</a>
+      <a href="#reality">ของจริงที่เจอ</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#resource">Resource</a>
+      <a href="#next">ต่อจากนี้</a>
+    </aside>
+
+    <article>
+      <section id="story">
+        <p>ช่วงนี้ใครๆ ก็ใช้ AI ช่วยเขียนโค้ดกันเยอะ ผมก็เริ่มจากจุดนั้นเหมือนกัน ให้มันอ่าน codebase แก้ bug เขียน feature หรือช่วยสรุป document ที่ไม่อยากนั่งไล่เอง</p>
+        <p>แต่พอใช้ไปสักพัก ผมเริ่มมีคำถามแปลกๆ โผล่มาในหัว</p>
+        <div class="quote">ถ้า AI ไม่ได้เป็นแค่ผู้ช่วยคนเดียว แต่ลองให้มันเป็นทีมไปเลยล่ะ?</div>
+        <p>ไม่ใช่เปิดหลายแชทแล้วตั้งชื่อเล่นเฉยๆ แต่ให้มันมี role ของตัวเอง มี task มี handoff มีคน review มี log ว่าใครทำอะไรไว้ แล้วสุดท้าย deploy ออกมาให้กดดูได้จริง</p>
+      </section>
+
+      <section id="team">
+        <h2>ผมเลยลอง setup ให้มันเหมือนบริษัทเล็กๆ</h2>
+        <p>ใน SekApp ผมลองแยก AI agents ออกเป็น role ต่างๆ เหมือนทีม software เล็กๆ มี PO, UX/UI, Dev, DevOps, QA, Project Coordinator, Marketing และ Admin</p>
+        <p>แต่ละ agent ไม่ได้ทำเหมือนกันหมด PO ช่วยแตก requirement, UX/UI ทำ preview, Dev เขียน code, DevOps ดู deploy, QA ไล่ test ส่วน Project Coordinator คอยดู flow งานทั้งบอร์ด</p>
+
+        <div class="tool-list">
+          <div class="tool-row"><small>Office</small><strong>Discord เอาไว้คุยงาน</strong></div>
+          <div class="tool-row"><small>Work board</small><strong>Linear เอาไว้แตก task</strong></div>
+          <div class="tool-row"><small>Code</small><strong>GitLab เอาไว้เก็บ repo กับ artifact</strong></div>
+          <div class="tool-row"><small>Human control</small><strong>งานสำคัญต้องรอ manager approve</strong></div>
+        </div>
+
+        <p>ฟังดูเหมือนจัดฉากนิดนึง แต่พอลองจริง flow มันเริ่มวิ่ง งานไหลจาก agent หนึ่งไปอีก agent หนึ่ง มี handoff มี comment มี preview มี staging link ให้เปิดดู</p>
+      </section>
+
+      <section id="reality">
+        <h2>พอลองจริง มันไม่ได้เนียนทุกอย่าง</h2>
+        <p>พูดตรงๆ มันไม่ใช่ magic button ที่กดทีเดียวแล้วทุกอย่างจบ AI เก่งก็จริง แต่ไม่ได้แปลว่ามันจะรู้ใจเราตลอดเวลา</p>
+        <p>บางวันมันช่วยได้เยอะมาก แบบถ้าทำคนเดียวคงใช้เวลานานกว่านี้หลายเท่า แต่บางวันก็มี moment ที่ต้องนั่งมองจอแล้วคิดว่า “เดี๋ยวนะ เมื่อกี้พวกเอ็ง sync กันจริงปะ”</p>
+        <p>พอลองจริงถึงรู้ว่า guardrails สำคัญมาก ถ้าไม่มีมัน AI จะ improvise ไปเรื่อย บางทีไปไกลกว่าที่เราตั้งใจไว้ด้วยซ้ำ แล้วถ้าไม่มี source of truth งานก็เริ่มจำกันคนละแบบ ส่วน action ที่เสี่ยงๆ ก็ต้องมี approval flow คั่นไว้ ไม่งั้นปล่อย auto แล้วใจหายเหมือนกัน</p>
+        <div class="quote">สุดท้ายผมไม่ได้อยากได้บอทเก่งๆ หลายตัว ผมอยากได้ทีมที่ทำงานต่อกันรู้เรื่อง</div>
+      </section>
+
+      <section id="architecture">
+        <h2>Technical + Architecture ที่ผมต่อไว้</h2>
+        <p>หลังบ้านของ setup นี้ไม่ได้ทำให้ซับซ้อนเพื่อโชว์อะไรขนาดนั้น ผมเน้นให้มันใช้งานได้จริงก่อน เลยไปหยิบ tool ที่ทีม dev / devops ใช้กันอยู่แล้วมาต่อกัน แล้วให้ AI เข้าไปทำงานใน workflow นั้นๆ</p>
+
+        <div class="stack">
+          <div class="stack-row"><div class="stack-label">OpenClaw</div><div class="stack-desc">ตัวกลางที่คุม agents, memory, sessions, tools และ workflow</div></div>
+          <div class="stack-row"><div class="stack-label">Discord</div><div class="stack-desc">ที่คุยงานของทีม แยก channel ตาม department ให้ตามงานง่าย</div></div>
+          <div class="stack-row"><div class="stack-label">Linear</div><div class="stack-desc">task board กลาง เอาไว้ดู status, assignee, label และ next step</div></div>
+          <div class="stack-row"><div class="stack-label">GitLab</div><div class="stack-desc">เก็บ source code, design preview, merge request และ artifact ที่ต้องย้อนกลับมาดูได้</div></div>
+          <div class="stack-row"><div class="stack-label">Relay</div><div class="stack-desc">ส่ง handoff ข้ามทีมผ่านไฟล์ ไม่ปล่อยให้ agent ยิง message กันเองจนคุมยาก</div></div>
+          <div class="stack-row"><div class="stack-label">Dashboard</div><div class="stack-desc">ดู status, cost, budget และ activity ของ agents ในหน้าเดียว</div></div>
+        </div>
+
+        <p>หลักคิดคือให้ AI ทำงานอยู่ใน workflow ที่เราวางไว้ ไม่ใช่ให้มันเดาทางเองทุกครั้ง งานไหนต้องมี evidence ก็เขียนลงไฟล์ งานไหนต้องผ่านคนก็รอ approve งานไหนต้อง test ก็มี staging ให้เปิดดู</p>
+      </section>
+
+      <section id="resource">
+        <h2>Resource ที่ใช้จริง ไม่ใช่แค่ mockup</h2>
+        <p>ชุดนี้รันบน resource จริง มี server, domain, container, staging, dashboard, script และ cost ที่ต้องดูจริง เวลาปรับอะไรทีมก็ต้องเห็นผลบนของที่เปิดใช้ได้จริง</p>
+        <ul>
+          <li>AWS server สำหรับรัน OpenClaw, dashboard, staging และ service ต่างๆ</li>
+          <li>Domain <strong>sekapp.xyz</strong> สำหรับ dashboard และ staging preview</li>
+          <li>Docker containers สำหรับแยก service ที่เอามา deploy ทดลอง</li>
+          <li>Linear + GitLab สำหรับ task, source code และ artifact</li>
+          <li>Cost tracking เอาไว้ดูว่า AI team burn ไปเท่าไร ไม่ใช่ปล่อยไหล</li>
+          <li>Memory / chat log / heartbeat เอาไว้ให้ทีมจำ context สำคัญ แล้วกลับมาทำงานต่อได้</li>
+        </ul>
+        <p>ตรงนี้เป็นส่วนที่ผมว่าสนุกที่สุด เพราะ AI ไม่ได้อยู่แค่ใน chat box แล้ว แต่มาอยู่ใน software workflow จริงๆ</p>
+      </section>
+
+      <section id="next">
+        <h2>ตอนนี้น่าจะเป็นแค่จุดเริ่มต้น</h2>
+        <p>บทความนี้ผมขอเล่า overview ก่อนว่ากำลังลองทำอะไรอยู่ และทำไมผมว่ามันน่าสนใจ</p>
+        <p>ตอนต่อๆ ไปน่าจะค่อยๆ แกะทีละชิ้น เช่น design role ของ AI agents ยังไง, handoff ทำยังไง, ทำไมต้องมี approval, cost ของ AI team คุมยังไง และอะไรที่ลองแล้วเวิร์ก/ไม่เวิร์ก</p>
+
+        <div class="cta">
+          <h2>ผมว่านี่แหละที่น่าลองต่อ</h2>
+          <p>ตอนนี้ SekApp ยังเป็นสนามทดลองของผมอยู่ หลายอย่างยังต้องปรับอีกเยอะ แต่ข้อดีคือมันเป็นของที่รันจริง มี server มี cost มี staging มีงานที่ต้องส่งต่อจริงๆ ไม่ใช่แค่ mockup ไว้ให้ดูสวย</p>
+          <p>ตอนนี้ผมยังไม่กล้าพูดว่ามันลงตัวแล้ว แต่มันเริ่มเห็นทางว่า AI หลายตัวทำงานต่อกันได้จริง ถ้าเราวาง flow ให้มันดีพอ</p>
+          <p>ถ้าไม่วางระบบ มันก็จะกลายเป็นหลายแชทที่ตอบเก่งแหละ แต่สุดท้ายเราต้องมานั่งต่อเองอยู่ดี</p>
+        </div>
+      </section>
+    </article>
+
+    <aside class="sharebox">
+      <span>SekApp Lab</span>
+    </aside>
+  </main>
+
+
+  <nav class="series-nav" aria-label="SekApp article series navigation">
+    <span class="empty"></span>
+    <a class="next" href="/2/"><small>บทต่อไป →</small><strong>AI เพียวๆ ไม่พอ ผมเลยต้องเอา script มาคุมอีกชั้น</strong></a>
+  </nav>
+  <footer class="footer">
+    SekApp Stories
+  </footer>
+</body>
+</html>
